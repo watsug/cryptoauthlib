@@ -6,6 +6,8 @@ option(ATCA_HAL_KIT_HID "Include the HID HAL Driver")
 option(ATCA_HAL_I2C "Include the I2C Hal Driver - Linux & MCU only")
 option(ATCA_PRINTF "Enable Debug print statements in library")
 option(ATCA_PKCS11 "Build PKCS11 Library")
+option(ATCA_MBEDTLS "Integrate with mbedtls")
+option(ATCA_STATIC_LIB "Build as a static library")
 
 # Collect Library Sources
 file(GLOB LIB_SRC RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.c")
@@ -15,6 +17,7 @@ file(GLOB_RECURSE CRYPTO_SRC RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "crypto/*.c")
 file(GLOB HOST_SRC RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "host/*.c")
 file(GLOB JWT_SRC RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "jwt/*.c")
 file(GLOB PKCS11_SRC RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "pkcs11/*.c")
+file(GLOB MBEDTLS_SRC RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "mbedtls/*.c")
 
 # Add the basic sources to the library
 set(CRYPTOAUTH_SRC ${LIB_SRC} ${ATCACERT_SRC} ${BASIC_SRC} ${CRYPTO_SRC} ${HOST_SRC} ${JWT_SRC} hal/atca_hal.c )
@@ -51,11 +54,19 @@ set(CRYPTOAUTH_SRC ${CRYPTOAUTH_SRC} ${TWI_SRC})
 endif(ATCA_HAL_I2C)
 
 # Add Remaining Sources depending on target library type
+if(ATCA_MBEDTLS)
+set(CRYPTOAUTH_SRC ${CRYPTOAUTH_SRC} ${MBEDTLS_SRC})
+endif()
+
 if(ATCA_PKCS11)
 set(CRYPTOAUTH_SRC ${CRYPTOAUTH_SRC} ${PKCS11_SRC})
 endif()
 
+if(ATCA_STATIC_LIB)
+add_library(cryptoauth STATIC ${CRYPTOAUTH_SRC} ${ATCACERT_DEF_SRC})
+else()
 add_library(cryptoauth SHARED ${CRYPTOAUTH_SRC} ${ATCACERT_DEF_SRC})
+endif()
 
 # Add Remaining Sources depending on target library type
 if(ATCA_PKCS11)
@@ -83,5 +94,4 @@ target_link_libraries(cryptoauth usb-1.0)
 endif()
 target_link_libraries(cryptoauth udev rt)
 endif()
-
 
