@@ -47,7 +47,6 @@
 #endif
 
 #include "mbedtls/pk.h"
-#include "mbedtls/pk_internal.h"
 #include "mbedtls/ecp.h"
 #include "mbedtls/x509_crt.h"
 
@@ -102,18 +101,16 @@ int atcac_sw_random(uint8_t* data, size_t data_size)
 
 #endif
 
-static const uint8_t ec_pubkey_asn1_header[] = {
-    0x30, 0x59, 0x30, 0x13, 0x06, 0x07, 0x2A, 0x86,
-    0x48, 0xCE, 0x3D, 0x02, 0x01, 0x06, 0x08, 0x2A,
-    0x86, 0x48, 0xCE, 0x3D, 0x03, 0x01, 0x07, 0x03,
-    0x42, 0x00, 0x04
-};
-
+/** \brief Initializes an mbedtls pk context for use with EC operations
+ * \param[in/out] pkey ptr to space to receive version string
+ * \param[in] slotid Associated with this key
+ * \return 0 on success, otherwise an error code.
+ */
 int atca_mbedtls_pk_init(mbedtls_pk_context * pkey, uint16_t slotid)
 {
     int ret = 0;
-    uint8_t pkey_buf[sizeof(ec_pubkey_asn1_header) + ATCA_PUB_KEY_SIZE];
-    uint8_t * pBuf = pkey_buf;
+    uint8_t public_key[ATCA_PUB_KEY_SIZE];
+    mbedtls_ecp_keypair * ecp;
 
     if (!pkey)
     {
@@ -122,21 +119,46 @@ int atca_mbedtls_pk_init(mbedtls_pk_context * pkey, uint16_t slotid)
 
     if (!ret)
     {
-        memcpy(pkey_buf, ec_pubkey_asn1_header, sizeof(ec_pubkey_asn1_header));
-        ret = atcab_get_pubkey(slotid, &pkey_buf[sizeof(ec_pubkey_asn1_header)]);
+        mbedtls_pk_init(pkey);
+        ret = mbedtls_pk_setup(pkey, mbedtls_pk_info_from_type(MBEDTLS_PK_ECKEY));
     }
 
     if (!ret)
     {
-        mbedtls_pk_init(pkey);
-        ret = mbedtls_pk_parse_subpubkey(&pBuf, pkey_buf + sizeof(pkey_buf), pkey);
-        mbedtls_mpi_lset(&((mbedtls_ecp_keypair*)pkey->pk_ctx)->d, slotid);
+        ecp = mbedtls_pk_ec(*pkey);
+        ret = mbedtls_ecp_group_load(&ecp->grp, MBEDTLS_ECP_DP_SECP256R1);
+    }
+
+    if (!ret)
+    {
+        ret = atcab_get_pubkey(slotid, public_key);
+    }
+
+    if (!ret)
+    {
+        ret = mbedtls_mpi_read_binary(&(ecp->Q.X), public_key, ATCA_PUB_KEY_SIZE / 2);
+    }
+
+    if (!ret)
+    {
+        ret = mbedtls_mpi_read_binary(&(ecp->Q.Y), &public_key[ATCA_PUB_KEY_SIZE / 2], ATCA_PUB_KEY_SIZE / 2);
+    }
+
+    if (!ret)
+    {
+        ret = mbedtls_mpi_lset(&ecp->d, slotid);
     }
 
     return ret;
 }
 
-int atca_mbedtls_cert_init(mbedtls_x509_crt * cert, atcacert_def_t * cert_def)
+/** \brief Rebuild a certificate from an atcacert_def_t structure, and then add
+ * it to an mbedtls cert chain.
+ * \param[in/out] cert mbedtls cert chain. Must have already been initialized
+ * \param[in] cert_def Certificate definition that will be rebuilt and added
+ * \return 0 on success, otherwise an error code.
+ */
+int atca_mbedtls_cert_add(mbedtls_x509_crt * cert, atcacert_def_t * cert_def)
 {
     uint8_t ca_key[64];
     int ret = ATCA_SUCCESS;

@@ -31,13 +31,16 @@
 #if defined(MBEDTLS_ECDH_C)
 
 #include "mbedtls/ecdh.h"
+#include "mbedtls/platform_util.h"
+
 /* Cryptoauthlib Includes */
 #include "cryptoauthlib.h"
 #include "basic/atca_basic.h"
+#include "atca_mbedtls_wrap.h"
 #include <string.h>
 
 #ifdef MBEDTLS_ECDH_GEN_PUBLIC_ALT
-/** Generate keypair */
+/** Generate ECDH keypair */
 int mbedtls_ecdh_gen_public(mbedtls_ecp_group *grp, mbedtls_mpi *d, mbedtls_ecp_point *Q,
                             int (*f_rng)(void *, unsigned char *, size_t),
                             void *p_rng)
@@ -45,6 +48,12 @@ int mbedtls_ecdh_gen_public(mbedtls_ecp_group *grp, mbedtls_mpi *d, mbedtls_ecp_
     int ret = 0;
     uint8_t public_key[ATCA_PUB_KEY_SIZE];
     uint8_t temp = 1;
+    uint16_t slotid = atca_mbedtls_ecdh_slot_cb();
+
+    if (!grp || !d || !Q)
+    {
+        ret = MBEDTLS_ERR_ECP_BAD_INPUT_DATA;
+    }
 
     if (grp->id != MBEDTLS_ECP_DP_SECP256R1)
     {
@@ -53,7 +62,12 @@ int mbedtls_ecdh_gen_public(mbedtls_ecp_group *grp, mbedtls_mpi *d, mbedtls_ecp_
 
     if (!ret)
     {
-        ret = atcab_genkey(d->s, public_key);
+        ret = mbedtls_mpi_lset(d, slotid);
+    }
+
+    if (!ret)
+    {
+        ret = atcab_genkey(slotid, public_key);
     }
 
     if (!ret)
@@ -76,9 +90,6 @@ int mbedtls_ecdh_gen_public(mbedtls_ecp_group *grp, mbedtls_mpi *d, mbedtls_ecp_
 #endif /* MBEDTLS_ECDH_GEN_PUBLIC_ALT */
 
 #ifdef MBEDTLS_ECDH_COMPUTE_SHARED_ALT
-
-extern uint8_t atca_io_protection_key[32];
-
 /*
  * Compute shared secret (SEC1 3.3.1)
  */
@@ -91,8 +102,10 @@ int mbedtls_ecdh_compute_shared(mbedtls_ecp_group *grp, mbedtls_mpi *z,
     int ret = 0;
     uint8_t public_key[ATCA_PUB_KEY_SIZE];
     uint8_t shared_key[ATCA_KEY_SIZE];
+    uint16_t slotid;
+    uint8_t secret[ATCA_KEY_SIZE];
 
-    if (grp == NULL)
+    if (!grp || !z || !Q || !d)
     {
         ret = MBEDTLS_ERR_ECP_BAD_INPUT_DATA;
     }
@@ -114,13 +127,26 @@ int mbedtls_ecdh_compute_shared(mbedtls_ecp_group *grp, mbedtls_mpi *z,
 
     if (!ret)
     {
-        if (d->s > 15)
+        slotid = *(uint16_t*)d->p;
+        if (ATECC608A == atcab_get_device()->mIface->mIfaceCFG->devtype)
         {
-            ret = atcab_ecdh_tempkey_ioenc(public_key, shared_key, atca_io_protection_key);
+            ret = atca_mbedtls_ecdh_ioprot_cb(secret);
+            if (!ret)
+            {
+                if (slotid > 15)
+                {
+                    ret = atcab_ecdh_tempkey_ioenc(public_key, shared_key, secret);
+                }
+                else
+                {
+                    ret = atcab_ecdh_ioenc(slotid, public_key, shared_key, secret);
+                }
+            }
+            mbedtls_platform_zeroize(secret, ATCA_KEY_SIZE);
         }
         else
         {
-            ret = atcab_ecdh_ioenc(d->s, public_key, shared_key, atca_io_protection_key);
+            ret = atcab_ecdh(slotid, public_key, shared_key);
         }
     }
 
