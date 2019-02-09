@@ -111,6 +111,7 @@ int atca_mbedtls_pk_init(mbedtls_pk_context * pkey, uint16_t slotid)
     int ret = 0;
     uint8_t public_key[ATCA_PUB_KEY_SIZE];
     mbedtls_ecp_keypair * ecp;
+    uint8_t temp = 1;
 
     if (!pkey)
     {
@@ -142,6 +143,11 @@ int atca_mbedtls_pk_init(mbedtls_pk_context * pkey, uint16_t slotid)
     if (!ret)
     {
         ret = mbedtls_mpi_read_binary(&(ecp->Q.Y), &public_key[ATCA_PUB_KEY_SIZE / 2], ATCA_PUB_KEY_SIZE / 2);
+    }
+
+    if (!ret)
+    {
+        ret = mbedtls_mpi_read_binary(&(ecp->Q.Z), &temp, 1);
     }
 
     if (!ret)

@@ -78,4 +78,63 @@ int mbedtls_ecdsa_sign(mbedtls_ecp_group *grp, mbedtls_mpi *r, mbedtls_mpi *s,
 
 #endif /* MBEDTLS_ECDSA_SIGN_ALT */
 
+#ifdef MBEDTLS_ECDSA_VERIFY_ALT
+/*
+* Verify ECDSA signature of hashed message
+*/
+int mbedtls_ecdsa_verify(mbedtls_ecp_group *grp,
+    const unsigned char *buf, size_t blen,
+    const mbedtls_ecp_point *Q,
+    const mbedtls_mpi *r,
+    const mbedtls_mpi *s)
+{
+    int ret = 0;
+    uint8_t raw_sig[ATCA_SIG_SIZE];
+    uint8_t public_key[ATCA_PUB_KEY_SIZE];
+    bool verified = false;
+
+    if (!grp || !buf || !Q || !r || !s)
+    {
+        ret = MBEDTLS_ERR_ECP_BAD_INPUT_DATA;
+    }
+
+    if (grp->id != MBEDTLS_ECP_DP_SECP256R1)
+    {
+        ret = MBEDTLS_ERR_ECP_FEATURE_UNAVAILABLE;
+    }
+
+    /* Convert the public key to it's uncompressed binary */
+    if (!ret)
+    {
+        ret = mbedtls_mpi_write_binary(&(Q->X), public_key, ATCA_PUB_KEY_SIZE / 2);
+    }
+    if (!ret)
+    {
+        ret = mbedtls_mpi_write_binary(&(Q->Y), &public_key[ATCA_PUB_KEY_SIZE / 2], ATCA_PUB_KEY_SIZE / 2);
+    }
+
+    /* Convert the signature to binary */
+    if (!ret)
+    {
+        ret = mbedtls_mpi_write_binary(r, raw_sig, ATCA_SIG_SIZE / 2);
+    }
+    if (!ret)
+    {
+        ret = mbedtls_mpi_write_binary(s, &raw_sig[ATCA_SIG_SIZE / 2], ATCA_SIG_SIZE / 2);
+    }
+
+    if (!ret)
+    {
+        ret = atcab_verify_extern(buf, raw_sig, public_key, &verified);
+
+        if (!ret && !verified)
+        {
+            ret = MBEDTLS_ERR_ECP_VERIFY_FAILED;
+        }
+    }
+
+    return ret;
+}
+#endif /* !MBEDTLS_ECDSA_VERIFY_ALT */
+
 #endif /* MBEDTLS_ECDSA_C */
