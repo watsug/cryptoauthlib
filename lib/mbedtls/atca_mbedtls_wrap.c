@@ -106,11 +106,11 @@ int atcac_sw_random(uint8_t* data, size_t data_size)
  * \param[in] slotid Associated with this key
  * \return 0 on success, otherwise an error code.
  */
-int atca_mbedtls_pk_init(mbedtls_pk_context * pkey, uint16_t slotid)
+int atca_mbedtls_pk_init(mbedtls_pk_context * pkey, const uint16_t slotid)
 {
     int ret = 0;
     uint8_t public_key[ATCA_PUB_KEY_SIZE];
-    mbedtls_ecp_keypair * ecp;
+    mbedtls_ecp_keypair * ecp = NULL;
     uint8_t temp = 1;
 
     if (!pkey)
@@ -164,17 +164,16 @@ int atca_mbedtls_pk_init(mbedtls_pk_context * pkey, uint16_t slotid)
  * \param[in] cert_def Certificate definition that will be rebuilt and added
  * \return 0 on success, otherwise an error code.
  */
-int atca_mbedtls_cert_add(mbedtls_x509_crt * cert, atcacert_def_t * cert_def)
+int atca_mbedtls_cert_add(mbedtls_x509_crt * cert, const atcacert_def_t * cert_def)
 {
     uint8_t ca_key[64];
     int ret = ATCA_SUCCESS;
     size_t cert_len;
     uint8_t * cert_buf = NULL;
-    int i;
 
     if (cert_def->ca_cert_def)
     {
-        atcacert_device_loc_t * ca_key_cfg = &cert_def->ca_cert_def->public_key_dev_loc;
+        const atcacert_device_loc_t * ca_key_cfg = &cert_def->ca_cert_def->public_key_dev_loc;
 
         if (ca_key_cfg->is_genkey)
         {
