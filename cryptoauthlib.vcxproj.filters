@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="basic">
+      <UniqueIdentifier>{bb1c3059-8d03-42ca-b094-e720033ba6b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hal">
+      <UniqueIdentifier>{62ef17af-1b9b-4184-a3ca-8572069b9ada}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hidapi">
+      <UniqueIdentifier>{a0bf2682-9522-4725-8249-b53b600d220e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="host">
+      <UniqueIdentifier>{5ea4119d-1cf8-4e8f-926a-264fea61716e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="crypto">
+      <UniqueIdentifier>{d0239428-a3c4-4f35-b568-2df7d66466cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="crypto\hashes">
+      <UniqueIdentifier>{d1549c16-95e0-4772-ad77-3cc4ef372f0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="atcacert">
+      <UniqueIdentifier>{d392ab19-f3cc-49a7-942a-3af5eab54cad}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="lib\basic\atca_basic.c">
+      <Filter>basic</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\basic\atca_basic_aes.c">
+      <Filter>basic</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\basic\atca_basic_aes_cbc.c">
+      <Filter>basic</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\basic\atca_basic_aes_cmac.c">
+      <Filter>basic</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\basic\atca_basic_aes_ctr.c">
+      <Filter>basic</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\basic\atca_basic_aes_gcm.c">
+      <Filter>basic</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\basic\atca_basic_checkmac.c">
+      <Filter>basic</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\basic\atca_basic_counter.c">
+      <Filter>basic</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\basic\atca_basic_derivekey.c">
+      <Filter>basic</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\basic\atca_basic_ecdh.c">
+      <Filter>basic</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\basic\atca_basic_gendig.c">
+      <Filter>basic</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\basic\atca_basic_genkey.c">
+      <Filter>basic</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\basic\atca_basic_hmac.c">
+      <Filter>basic</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\basic\atca_basic_info.c">
+      <Filter>basic</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\basic\atca_basic_kdf.c">
+      <Filter>basic</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\basic\atca_basic_lock.c">
+      <Filter>basic</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\basic\atca_basic_mac.c">
+      <Filter>basic</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\basic\atca_basic_nonce.c">
+      <Filter>basic</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\basic\atca_basic_privwrite.c">
+      <Filter>basic</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\basic\atca_basic_random.c">
+      <Filter>basic</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\basic\atca_basic_read.c">
+      <Filter>basic</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\basic\atca_basic_secureboot.c">
+      <Filter>basic</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\basic\atca_basic_selftest.c">
+      <Filter>basic</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\basic\atca_basic_sha.c">
+      <Filter>basic</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\basic\atca_basic_sign.c">
+      <Filter>basic</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\basic\atca_basic_updateextra.c">
+      <Filter>basic</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\basic\atca_basic_verify.c">
+      <Filter>basic</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\basic\atca_basic_write.c">
+      <Filter>basic</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\basic\atca_helpers.c">
+      <Filter>basic</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\atca_cfgs.c" />
+    <ClCompile Include="lib\atca_command.c" />
+    <ClCompile Include="lib\atca_device.c" />
+    <ClCompile Include="lib\atca_execution.c" />
+    <ClCompile Include="lib\atca_iface.c" />
+    <ClCompile Include="lib\hal\atca_hal.c">
+      <Filter>hal</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\hal\hal_all_platforms_kit_hidapi.c">
+      <Filter>hal</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\hal\hal_win_kit_cdc.c">
+      <Filter>hal</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\hal\hal_win_kit_hid.c">
+      <Filter>hal</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\hal\hal_win_timer.c">
+      <Filter>hal</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\hidapi\windows\hid.c">
+      <Filter>hidapi</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\host\atca_host.c">
+      <Filter>host</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\crypto\atca_crypto_sw_ecdsa.c">
+      <Filter>crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\crypto\atca_crypto_sw_rand.c">
+      <Filter>crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\crypto\atca_crypto_sw_sha1.c">
+      <Filter>crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\crypto\atca_crypto_sw_sha2.c">
+      <Filter>crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\crypto\hashes\sha1_routines.c">
+      <Filter>crypto\hashes</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\crypto\hashes\sha2_routines.c">
+      <Filter>crypto\hashes</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\atcacert\atcacert_client.c">
+      <Filter>atcacert</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\atcacert\atcacert_der.c">
+      <Filter>atcacert</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\atcacert\atcacert_pem.c">
+      <Filter>atcacert</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\atcacert\atcacert_date.c">
+      <Filter>atcacert</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\atcacert\atcacert_def.c">
+      <Filter>atcacert</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\atcacert\atcacert_host_hw.c">
+      <Filter>atcacert</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\atcacert\atcacert_host_sw.c">
+      <Filter>atcacert</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="lib\basic\atca_basic.h">
+      <Filter>basic</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\basic\atca_basic_aes_gcm.h">
+      <Filter>basic</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\basic\atca_helpers.h">
+      <Filter>basic</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\atca_bool.h" />
+    <ClInclude Include="lib\atca_cfgs.h" />
+    <ClInclude Include="lib\atca_command.h" />
+    <ClInclude Include="lib\atca_compiler.h" />
+    <ClInclude Include="lib\atca_device.h" />
+    <ClInclude Include="lib\atca_devtypes.h" />
+    <ClInclude Include="lib\atca_execution.h" />
+    <ClInclude Include="lib\atca_iface.h" />
+    <ClInclude Include="lib\atca_status.h" />
+    <ClInclude Include="lib\cryptoauthlib.h" />
+    <ClInclude Include="lib\hal\atca_hal.h">
+      <Filter>hal</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\hal\atca_start_config.h">
+      <Filter>hal</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\hal\atca_start_iface.h">
+      <Filter>hal</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\hal\hal_all_platforms_kit_hidapi.h">
+      <Filter>hal</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\hal\hal_win_kit_cdc.h">
+      <Filter>hal</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\hal\hal_win_kit_hid.h">
+      <Filter>hal</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\crypto\atca_crypto_sw.h">
+      <Filter>crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\crypto\atca_crypto_sw_ecdsa.h">
+      <Filter>crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\crypto\atca_crypto_sw_rand.h">
+      <Filter>crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\crypto\atca_crypto_sw_sha1.h">
+      <Filter>crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\crypto\atca_crypto_sw_sha2.h">
+      <Filter>crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\crypto\hashes\sha1_routines.h">
+      <Filter>crypto\hashes</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\crypto\hashes\sha2_routines.h">
+      <Filter>crypto\hashes</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

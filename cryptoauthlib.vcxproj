@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="lib\atcacert\atcacert_client.c" />
+    <ClCompile Include="lib\atcacert\atcacert_date.c" />
+    <ClCompile Include="lib\atcacert\atcacert_def.c" />
+    <ClCompile Include="lib\atcacert\atcacert_der.c" />
+    <ClCompile Include="lib\atcacert\atcacert_host_hw.c" />
+    <ClCompile Include="lib\atcacert\atcacert_host_sw.c" />
+    <ClCompile Include="lib\atcacert\atcacert_pem.c" />
+    <ClCompile Include="lib\atca_cfgs.c" />
+    <ClCompile Include="lib\atca_command.c" />
+    <ClCompile Include="lib\atca_device.c" />
+    <ClCompile Include="lib\atca_execution.c" />
+    <ClCompile Include="lib\atca_iface.c" />
+    <ClCompile Include="lib\basic\atca_basic.c" />
+    <ClCompile Include="lib\basic\atca_basic_aes.c" />
+    <ClCompile Include="lib\basic\atca_basic_aes_cbc.c" />
+    <ClCompile Include="lib\basic\atca_basic_aes_cmac.c" />
+    <ClCompile Include="lib\basic\atca_basic_aes_ctr.c" />
+    <ClCompile Include="lib\basic\atca_basic_aes_gcm.c" />
+    <ClCompile Include="lib\basic\atca_basic_checkmac.c" />
+    <ClCompile Include="lib\basic\atca_basic_counter.c" />
+    <ClCompile Include="lib\basic\atca_basic_derivekey.c" />
+    <ClCompile Include="lib\basic\atca_basic_ecdh.c" />
+    <ClCompile Include="lib\basic\atca_basic_gendig.c" />
+    <ClCompile Include="lib\basic\atca_basic_genkey.c" />
+    <ClCompile Include="lib\basic\atca_basic_hmac.c" />
+    <ClCompile Include="lib\basic\atca_basic_info.c" />
+    <ClCompile Include="lib\basic\atca_basic_kdf.c" />
+    <ClCompile Include="lib\basic\atca_basic_lock.c" />
+    <ClCompile Include="lib\basic\atca_basic_mac.c" />
+    <ClCompile Include="lib\basic\atca_basic_nonce.c" />
+    <ClCompile Include="lib\basic\atca_basic_privwrite.c" />
+    <ClCompile Include="lib\basic\atca_basic_random.c" />
+    <ClCompile Include="lib\basic\atca_basic_read.c" />
+    <ClCompile Include="lib\basic\atca_basic_secureboot.c" />
+    <ClCompile Include="lib\basic\atca_basic_selftest.c" />
+    <ClCompile Include="lib\basic\atca_basic_sha.c" />
+    <ClCompile Include="lib\basic\atca_basic_sign.c" />
+    <ClCompile Include="lib\basic\atca_basic_updateextra.c" />
+    <ClCompile Include="lib\basic\atca_basic_verify.c" />
+    <ClCompile Include="lib\basic\atca_basic_write.c" />
+    <ClCompile Include="lib\basic\atca_helpers.c" />
+    <ClCompile Include="lib\crypto\atca_crypto_sw_ecdsa.c" />
+    <ClCompile Include="lib\crypto\atca_crypto_sw_rand.c" />
+    <ClCompile Include="lib\crypto\atca_crypto_sw_sha1.c" />
+    <ClCompile Include="lib\crypto\atca_crypto_sw_sha2.c" />
+    <ClCompile Include="lib\crypto\hashes\sha1_routines.c" />
+    <ClCompile Include="lib\crypto\hashes\sha2_routines.c" />
+    <ClCompile Include="lib\hal\atca_hal.c" />
+    <ClCompile Include="lib\hal\hal_all_platforms_kit_hidapi.c" />
+    <ClCompile Include="lib\hal\hal_win_kit_cdc.c" />
+    <ClCompile Include="lib\hal\hal_win_kit_hid.c" />
+    <ClCompile Include="lib\hal\hal_win_timer.c" />
+    <ClCompile Include="lib\host\atca_host.c" />
+    <ClCompile Include="third_party\hidapi\windows\hid.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="lib\atca_bool.h" />
+    <ClInclude Include="lib\atca_cfgs.h" />
+    <ClInclude Include="lib\atca_command.h" />
+    <ClInclude Include="lib\atca_compiler.h" />
+    <ClInclude Include="lib\atca_device.h" />
+    <ClInclude Include="lib\atca_devtypes.h" />
+    <ClInclude Include="lib\atca_execution.h" />
+    <ClInclude Include="lib\atca_iface.h" />
+    <ClInclude Include="lib\atca_status.h" />
+    <ClInclude Include="lib\basic\atca_basic.h" />
+    <ClInclude Include="lib\basic\atca_basic_aes_gcm.h" />
+    <ClInclude Include="lib\basic\atca_helpers.h" />
+    <ClInclude Include="lib\cryptoauthlib.h" />
+    <ClInclude Include="lib\crypto\atca_crypto_sw.h" />
+    <ClInclude Include="lib\crypto\atca_crypto_sw_ecdsa.h" />
+    <ClInclude Include="lib\crypto\atca_crypto_sw_rand.h" />
+    <ClInclude Include="lib\crypto\atca_crypto_sw_sha1.h" />
+    <ClInclude Include="lib\crypto\atca_crypto_sw_sha2.h" />
+    <ClInclude Include="lib\crypto\hashes\sha1_routines.h" />
+    <ClInclude Include="lib\crypto\hashes\sha2_routines.h" />
+    <ClInclude Include="lib\hal\atca_hal.h" />
+    <ClInclude Include="lib\hal\atca_start_config.h" />
+    <ClInclude Include="lib\hal\atca_start_iface.h" />
+    <ClInclude Include="lib\hal\hal_all_platforms_kit_hidapi.h" />
+    <ClInclude Include="lib\hal\hal_win_kit_cdc.h" />
+    <ClInclude Include="lib\hal\hal_win_kit_hid.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{384B3460-699A-4987-9A08-A4E838EE6455}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>cryptoauthlib</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;ATCAPRINTF;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)/lib;$(ProjectDir)/third_party/hidapi/hidapi/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <SuppressStartupBanner>false</SuppressStartupBanner>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;ATCAPRINTF;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)/lib;$(ProjectDir)/third_party/hidapi/hidapi/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <SuppressStartupBanner>false</SuppressStartupBanner>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;ATCAPRINTF;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)/lib;$(ProjectDir)/third_party/hidapi/hidapi/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <SuppressStartupBanner>false</SuppressStartupBanner>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;ATCAPRINTF;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)/lib;$(ProjectDir)/third_party/hidapi/hidapi/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <SuppressStartupBanner>false</SuppressStartupBanner>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
